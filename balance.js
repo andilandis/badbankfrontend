@@ -1,31 +1,37 @@
 function Balance(){
   const [show, setShow]     = React.useState(true);
   const [status, setStatus] = React.useState('');  
+  const [balance, setBalance] = React.useState('');
+  const [user, setUser] = React.useState(''); 
 
   return (
     <Card
       bgcolor="dark"
       header={(<img src="balance.jpg" className="img-fluid" alt="Bad Bank Logo"/>)}
-      title="Balance"
+      title="Check your balance by logging in with your email"
       status={status}
       body={show ?
-        <BalanceForm setShow={setShow} setStatus={setStatus}/> :
-        <BalanceMsg setShow={setShow} setStatus={setStatus}/>}
+        <BalanceForm setShow={setShow} setStatus={setStatus} setUser={setUser} /> :
+        <BalanceMsg setShow={setShow} setStatus={setStatus} user={user} balanc={balance}/>}
     />
   )
 
 }
 
 function BalanceMsg(props){
+  const [show, setShow]     = React.useState(true);
+  const [status, setStatus] = React.useState('');  
+  const [balance, setBalance] = React.useState('');
+  const [user, setUser] = React.useState(''); 
   return(<>
-    <h5>Success</h5>
+    <h5>Your balance: ${props.user.balance}</h5>
     <button type="submit" 
       className="btn btn-info" 
       onClick={() => {
         props.setShow(true);
         props.setStatus('');
       }}>
-        Check balance again
+        View a different account
     </button>
   </>);
 }
@@ -52,7 +58,7 @@ function BalanceForm(props){
   }
 
   return (<>
-
+ 
     Email<br/>
     <input type="input" 
       className="form-control" 
@@ -61,10 +67,12 @@ function BalanceForm(props){
       onChange={e => setEmail(e.currentTarget.value)}/><br/>
 
     <button type="submit" 
+      disabled={!email}
       className="btn btn-info" 
       onClick={handle}>
-        Check Balance
+        View Balance
     </button>
+  
 
   </>);
 }

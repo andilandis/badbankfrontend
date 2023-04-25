@@ -5,7 +5,7 @@ function Login(){
   return (
     <Card
       bgcolor="dark"
-      header="Login"
+      header="Login in to your Bad Bank account"
       status={status}
       body={show ? 
         <LoginForm setShow={setShow} setStatus={setStatus}/> :
@@ -15,12 +15,14 @@ function Login(){
 }
 
 function LoginMsg(props){
+  const [user, setUser] = React.useState('');
+  const [name, setName] = React.useState('');
   return(<>
-    <h5>Success</h5>
+    <h5>Success! Welcome back {user.name}</h5>
     <button type="submit" 
-      className="btn btn-light" 
+      className="btn btn-info" 
       onClick={() => props.setShow(true)}>
-        Authenticate again
+        Not you? Login in with a different account
     </button>
   </>);
 }
@@ -51,18 +53,18 @@ function LoginForm(props){
     Email<br/>
     <input type="input" 
       className="form-control" 
-      placeholder="Enter email" 
+      placeholder="Enter Email" 
       value={email} 
       onChange={e => setEmail(e.currentTarget.value)}/><br/>
 
     Password<br/>
     <input type="password" 
       className="form-control" 
-      placeholder="Enter password" 
+      placeholder="Enter Password" 
       value={password} 
       onChange={e => setPassword(e.currentTarget.value)}/><br/>
 
-    <button type="submit" className="btn btn-light" onClick={handle}>Login</button>
+    <button type="submit" className="btn btn-info" onClick={handle}>Login</button>
    
   </>);
 }

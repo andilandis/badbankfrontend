@@ -1,5 +1,4 @@
-function NavBar() {
-    const [user, setUser] = React.useState('');
+function ShortNavBar() {
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-info" data-bs-theme="dark">
             <div className="container-fluid">
@@ -16,18 +15,6 @@ function NavBar() {
                         </li>
                         <li className="nav-item">
                             <a className="nav-link" href="#/login/">Login</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="#/deposit/" disabled={!user}>Deposit</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="#/withdraw/">Withdraw</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="#/balance/">Balance</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="#/alldata/">All Data</a>
                         </li>
                     </ul>
                 </div>

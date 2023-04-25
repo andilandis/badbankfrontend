@@ -3,23 +3,26 @@ function Deposit(){
   const [status, setStatus] = React.useState('');  
 
   return (
-    <>
     <Card
       bgcolor="dark"
       header={(<img src="deposit.jpg" className="img-fluid" alt="Bad Bank Logo"/>)}
-      title="Deposit"
+      title="Welcome to the Deposit screen. To make a deposit, enter your email and deposit amount." 
       status={status}
       body={show ? 
         <DepositForm setShow={setShow} setStatus={setStatus}/> :
         <DepositMsg setShow={setShow} setStatus={setStatus}/>}
     />
-    </>
   )
 }
 
 function DepositMsg(props){
-  return (<>
-    <h5>Successful Deposit!</h5>
+  const [show, setShow]     = React.useState(true);
+  const [status, setStatus] = React.useState('');  
+  const [amount, setAmount] = React.useState('');
+  const [user, setUser] = React.useState(''); 
+
+  return(<>
+    <h5>Successful Deposit! Your new balance is ${setAmount}</h5>
     <button type="submit" 
       className="btn btn-info" 
       onClick={() => {
@@ -34,6 +37,7 @@ function DepositMsg(props){
 function DepositForm(props){
   const [email, setEmail]   = React.useState('');
   const [amount, setAmount] = React.useState('');
+  
 
   function handle(){
     fetch(`/account/update/${email}/${amount}`)
@@ -59,14 +63,16 @@ function DepositForm(props){
       placeholder="Enter Email" 
       value={email} onChange={e => setEmail(e.currentTarget.value)}/><br/>
       
-    Deposit Amount<br/>
-    <input type="number" min="1"
+    Amount<br/>
+    <input type="number" 
       className="form-control" 
+      min="1"
       placeholder="$0.00" 
       value={amount} onChange={e => setAmount(e.currentTarget.value)}/><br/>
 
     <button type="submit" 
       className="btn btn-info" 
+      disabled={!email || !amount}
       onClick={handle}>Deposit Funds</button>
 
   </>);

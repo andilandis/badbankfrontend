@@ -6,7 +6,7 @@ function Withdraw(){
     <Card
       bgcolor="dark"
       header={(<img src="withdraw.jpg" className="img-fluid" alt="Bad Bank Logo"/>)}
-      title="Withdraw"
+      title="Welcome to the Withdraw screen. To make a withdraw, enter your email and withdraw amount." 
       status={status}
       body={show ? 
         <WithdrawForm setShow={setShow} setStatus={setStatus}/> :
@@ -16,10 +16,16 @@ function Withdraw(){
 }
 
 function WithdrawMsg(props){
+  const [show, setShow]     = React.useState(true);
+  const [status, setStatus] = React.useState('');  
+  const [amount, setAmount] = React.useState('');
+  const [user, setUser] = React.useState(''); 
+  const [balance, setBalance] = React.useState('');
   return(<>
-    <h5>Success</h5>
+    <h5>Successful Withdraw! Your new balance is ${amount}</h5>
+ 
     <button type="submit" 
-      className="btn btn-light" 
+      className="btn btn-info" 
       onClick={() => {
         props.setShow(true);
         props.setStatus('');
@@ -67,9 +73,9 @@ function WithdrawForm(props){
       onChange={e => setAmount(e.currentTarget.value)}/><br/>
 
     <button type="submit" 
-      className="btn btn-light" 
+      className="btn btn-info" 
       onClick={handle}>
-        Withdraw
+        Withdraw Funds
     </button>
 
   </>);
